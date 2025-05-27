@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedido da Gabi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9e3f1;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #b83280;
+    }
+    .puzzle {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 300px;
+      margin: 20px auto;
+    }
+    .puzzle img {
+      width: 100%;
+      display: none;
+    }
+    .question {
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff0f6;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #finalMessage {
+      display: none;
+      font-size: 20px;
+      margin-top: 20px;
+      color: #b83280;
+    }
+    #finalMessage a {
+      color: #b83280;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Desafios do Amor 💘</h1>
+
+  <div class="puzzle">
+    <img id="finalImage" src="final.png" style="display: none; width: 100%;">
+  </div>
+
+  <div id="questions">
+    <div class="question" id="q1">
+      <p>1. O que você mais gosta nesse mundo?</p>
+      <input type="text" id="a1" />
+      <button onclick="checkAnswer(1, 'Meu Namorado')">Responder</button>
+    </div>
+    <div class="question hidden" id="q2">
+      <p>2. Desembaralhe a palavra: ETIFRPAE</p>
+      <input type="text" id="a2" />
+      <button onclick="checkAnswer(2, 'perfeita')">Responder</button>
+    </div>
+    <div class="question hidden" id="q3">
+      <p>3. Encontre o coração real 💜❤️💛💚💙🧡💖💗💓</p>
+      <button onclick="checkAnswer(3, '💖')">💖</button>
+    </div>
+    <div class="question hidden" id="q4">
+      <p>4. Digite a senha secreta:<br/>Dica: Mês do Black Friday e do escorpião ♏<br/>Veio depois dos dinossauros... mas antes de a Gabi me conhecer 😜</p>
+      <input type="text" id="a4" />
+      <button onclick="checkAnswer(4, '21/11/2001')">Responder</button>
+    </div>
+    <div class="question hidden" id="q5">
+      <p>5. Que música os emojis representam? 🦍💜</p>
+      <input type="text" id="a5" />
+      <button onclick="checkAnswer(5, 'gorila roxo')">Responder</button>
+    </div>
+  </div>
+
+  <div id="finalMessage">
+    <h2>Parabéns amor, você completou todos os desafios!</h2>
+    <p>Feliz dia dos namorados, nega! Te amoooo! 💖</p>
+    <p>
+      <a href="https://www.youtube.com/watch?v=BUL7zecHZjA" target="_blank">
+        🎵 Ouça nossa música: Gorila Roxo
+      </a>
+    </p>
+  </div>
+
+  <div style="display:none;">
+    <iframe 
+      width="0" 
+      height="0" 
+      src="https://www.youtube.com/embed/BUL7zecHZjA?autoplay=1&loop=1&playlist=BUL7zecHZjA" 
+      frameborder="0" 
+      allow="autoplay"
+    ></iframe>
+  </div>
+
+  <script>
+    function checkAnswer(n, correct) {
+      const input = document.getElementById('a' + n);
+      let value = input ? input.value.trim().toLowerCase() : correct.toLowerCase();
+      if (value === correct.toLowerCase()) {
+        document.getElementById('q' + n).classList.add('hidden');
+        if (n < 5) {
+          document.getElementById('q' + (n + 1)).classList.remove('hidden');
+        } else {
+          document.getElementById('finalImage').style.display = 'block';
+          document.getElementById('finalMessage').style.display = 'block';
+        }
+      } else {
+        alert('Tente novamente!');
+      }
+    }
+  </script>
+</body>
+</html>
