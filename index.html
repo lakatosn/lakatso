@@ -3,104 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pedido da Gabi</title>
+  <title>Desafios do Nosso Amor 💘</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9e3f1;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f9e3f1 0%, #f8c8dc 100%);
       text-align: center;
       margin: 0;
       padding: 0;
+      overflow: hidden;
+      min-height: 100vh;
     }
+    
     h1 {
       color: #b83280;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      margin-top: 30px;
     }
+    
     .puzzle {
       display: grid;
       grid-template-columns: 1fr;
       width: 300px;
       margin: 20px auto;
     }
+    
     .puzzle img {
       width: 100%;
       display: none;
+      border-radius: 10px;
+      border: 4px solid white;
+      box-shadow: 0 0 20px rgba(184, 50, 128, 0.5);
+      transition: transform 0.5s ease;
     }
+    
+    .puzzle img:hover {
+      transform: scale(1.02);
+    }
+    
     .question {
       margin: 20px auto;
       padding: 20px;
-      background-color: #fff0f6;
+      background-color: rgba(255, 240, 246, 0.9);
       width: 90%;
       max-width: 400px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
     }
+    
     .hidden {
       display: none;
     }
+    
     button {
       margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #ff69b4;
+      padding: 12px 24px;
+      background: linear-gradient(45deg, #ff69b4, #b83280);
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
       cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      background: linear-gradient(45deg, #b83280, #ff69b4);
+    }
+    
     #finalMessage {
       display: none;
       font-size: 20px;
-      margin-top: 20px;
+      margin: 30px auto;
       color: #b83280;
+      max-width: 500px;
+      padding: 20px;
+      background-color: rgba(255, 240, 246, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(184, 50, 128, 0.3);
     }
-    #finalMessage a {
+    
+    #finalMessage h2 {
+      margin-bottom: 20px;
+    }
+    
+    input {
+      padding: 10px;
+      border: 2px solid #ffb6d9;
+      border-radius: 20px;
+      width: 80%;
+      margin-top: 10px;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #b83280;
+    }
+    
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ff69b4"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat;
+      pointer-events: none;
+      opacity: 0.6;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    .music-link {
       color: #b83280;
-      text-decoration: underline;
+      text-decoration: none;
       font-weight: bold;
+      background-color: #fff0f6;
+      padding: 10px 20px;
+      border-radius: 25px;
+      display: inline-block;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .music-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      background-color: #ffd6e7;
     }
   </style>
 </head>
 <body>
-  <h1>Desafios do Amor 💘</h1>
+  <h1>Desafios do Nosso Amor 💘</h1>
 
   <div class="puzzle">
-    <img id="finalImage" src="final.png" style="display: none; width: 100%;">
+    <img id="finalImage" src="final.png" style="display: none;">
   </div>
 
   <div id="questions">
     <div class="question" id="q1">
-      <p>1. O que você mais gosta nesse mundo?</p>
-      <input type="text" id="a1" />
-      <button onclick="checkAnswer(1, 'Meu Namorado')">Responder</button>
+      <p>1. O que faz seu coração bater mais forte nesse mundo?</p>
+      <input type="text" id="a1" placeholder="A resposta está no seu coração 💖" />
+      <button onclick="checkAnswer(1, 'Meu Namorado')">Enviar Amor</button>
     </div>
     <div class="question hidden" id="q2">
       <p>2. Desembaralhe a palavra: ETIFRPAE</p>
-      <input type="text" id="a2" />
-      <button onclick="checkAnswer(2, 'perfeita')">Responder</button>
+      <p><small>(Dica: É como eu te faço sentir)</small></p>
+      <input type="text" id="a2" placeholder="Digite a palavra correta" />
+      <button onclick="checkAnswer(2, 'perfeita')">Verificar</button>
     </div>
     <div class="question hidden" id="q3">
-      <p>3. Encontre o coração real 💜❤️💛💚💙🧡💖💗💓</p>
-      <button onclick="checkAnswer(3, '💖')">💖</button>
+      <p>3. Encontre o coração que representa nosso amor 💜❤️💛💚💙🧡💖💗💓</p>
+      <div style="margin-top: 15px;">
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">💜</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">❤️</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">💛</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">💚</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">💙</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">🧡</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">💖</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">💗</button>
+        <button onclick="checkAnswer(3, '💖')" style="font-size: 24px; margin: 5px;">💓</button>
+      </div>
     </div>
     <div class="question hidden" id="q4">
-      <p>4. Digite a senha secreta:<br/>Dica: Mês do Black Friday e do escorpião ♏<br/>Veio depois dos dinossauros... mas antes de a Gabi me conhecer 😜</p>
-      <input type="text" id="a4" />
-      <button onclick="checkAnswer(4, '21/11/2001')">Responder</button>
+      <p>4. Digite a senha secreta do meu coração:</p>
+      <p><small>Dica: Mês do Black Friday e do escorpião ♏<br/>Veio depois dos dinossauros... mas antes de você me conhecer 😜</small></p>
+      <input type="text" id="a4" placeholder="DD/MM/AAAA" />
+      <button onclick="checkAnswer(4, '21/11/2001')">Desvendar</button>
     </div>
     <div class="question hidden" id="q5">
-      <p>5. Que música os emojis representam? 🦍💜</p>
-      <input type="text" id="a5" />
-      <button onclick="checkAnswer(5, 'gorila roxo')">Responder</button>
+      <p>5. Que música especial os emojis representam? 🦍💜</p>
+      <p><small>(Nossa música favorita!)</small></p>
+      <input type="text" id="a5" placeholder="Nome da música" />
+      <button onclick="checkAnswer(5, 'gorila roxo')">Descobrir</button>
     </div>
   </div>
 
   <div id="finalMessage">
-    <h2>Parabéns amor, você completou todos os desafios!</h2>
-    <p>Feliz dia dos namorados, nega! Te amoooo! 💖</p>
-    <p>
-      <a href="https://www.youtube.com/watch?v=BUL7zecHZjA" target="_blank">
-        🎵 Ouça nossa música: Gorila Roxo
-      </a>
-    </p>
+    <h2> Parabéns, meu amor! 💖</h2>
+    <p> Você conquistou todos os desafios, assim como conquistou meu coração.</p>
+    <p> Cada dia ao seu lado é uma aventura incrível, e eu mal posso esperar por todos os outros que ainda estão por vir.</p>
+    <p> Feliz dia dos namorados, meu amor! Você é a pessoa mais especial da minha vida! 💘</p>
+    <a href="https://www.youtube.com/watch?v=BUL7zecHZjA" target="_blank" class="music-link">
+      🎵 Clique aqui para nossa música especial: Gorila Roxo
+    </a>
   </div>
 
   <div style="display:none;">
@@ -114,21 +207,133 @@
   </div>
 
   <script>
+    // Cria corações flutuantes ao carregar a página
+    document.addEventListener('DOMContentLoaded', function() {
+      createHearts(15);
+      
+      // Cria alguns corações periodicamente
+      setInterval(() => {
+        createHearts(3);
+      }, 3000);
+    });
+    
     function checkAnswer(n, correct) {
       const input = document.getElementById('a' + n);
       let value = input ? input.value.trim().toLowerCase() : correct.toLowerCase();
+      
       if (value === correct.toLowerCase()) {
+        // Efeito de confete para respostas corretas
+        createHearts(10);
+        
         document.getElementById('q' + n).classList.add('hidden');
         if (n < 5) {
           document.getElementById('q' + (n + 1)).classList.remove('hidden');
         } else {
+          // Efeito especial para a última resposta
+          createHearts(50);
           document.getElementById('finalImage').style.display = 'block';
           document.getElementById('finalMessage').style.display = 'block';
+          document.getElementById('questions').style.display = 'none';
+          
+          // Efeito de digitação no texto final
+          typeWriter();
+          
         }
       } else {
-        alert('Tente novamente!');
+        alert('Quase lá, amor! Tenta de novo 💖');
       }
     }
+
+    
+    
+    // Função para criar corações
+    function createHearts(count) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = (Math.random() * 20 + 80) + 'vh';
+        heart.style.transform = 'scale(' + (Math.random() * 0.5 + 0.5) + ')';
+        heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+    }
+    
+    // Efeito de máquina de escrever
+    // Substitua a função typeWriter() atual por esta versão corrigida:
+function typeWriter() {
+  const element = document.getElementById('finalMessage');
+  const originalContent = element.innerHTML;
+  
+  // Dividimos o conteúdo em partes que são texto puro e partes que são HTML
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  
+  // Usamos uma regex para encontrar todas as tags HTML
+  const tagRegex = /<[^>]+>/g;
+  
+  while ((match = tagRegex.exec(originalContent)) !== null) {
+    // Texto antes da tag
+    if (match.index > lastIndex) {
+      parts.push({
+        type: 'text',
+        content: originalContent.substring(lastIndex, match.index)
+      });
+    }
+    // A tag em si
+    parts.push({
+      type: 'html',
+      content: match[0]
+    });
+    lastIndex = match.index + match[0].length;
+  }
+  
+  // Texto após a última tag
+  if (lastIndex < originalContent.length) {
+    parts.push({
+      type: 'text',
+      content: originalContent.substring(lastIndex)
+    });
+  }
+  
+  // Limpamos o elemento
+  element.innerHTML = '';
+  
+  let currentPart = 0;
+  let currentPos = 0;
+  const speed = 30; // velocidade da digitação
+  
+  function typeNext() {
+    if (currentPart >= parts.length) return;
+    
+    const part = parts[currentPart];
+    
+    if (part.type === 'html') {
+      // Se for HTML, adicionamos imediatamente
+      element.innerHTML += part.content;
+      currentPart++;
+      setTimeout(typeNext, speed);
+    } else {
+      // Se for texto, digitamos caractere por caractere
+      if (currentPos < part.content.length) {
+        element.innerHTML += part.content.charAt(currentPos);
+        currentPos++;
+        setTimeout(typeNext, speed);
+      } else {
+        currentPart++;
+        currentPos = 0;
+        setTimeout(typeNext, speed);
+      }
+    }
+  }
+  
+  typeNext();
+}
   </script>
 </body>
 </html>
